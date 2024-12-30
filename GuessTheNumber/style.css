@@ -1,0 +1,29 @@
+#gameField, #difficultyField {
+	width: 80%;
+	margin: 0 auto;
+	padding: 0.3em;
+	border: 1px dotted #999;
+}
+
+#gameField{
+	display: none;
+}
+
+#output {
+	min-height: 1em;
+	margin: 1em 0;
+	padding: 0.5em;
+	background: inherit;
+}
+
+body{
+	background-color: azure;
+}
+/*  
+		Задачи:
+		 
+			1. Проментете кода, така че променливата count да отразява правилно броят опити за отгатване на числото.
+
+			2. Когато потребителят дава грешно предположение, то div.output да е със червен фон.
+			   Когато отгатне точното число - div.output да бъде с червен фон.
+		*/
