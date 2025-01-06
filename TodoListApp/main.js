@@ -11,7 +11,7 @@ function addTodo() {
 }
 
 function toggleComplete(index) {
-    console.log('0.we in here');
+    //console.log('0.we in here');
 
     const todo = todoItems[index];
     todo.completed =  !todo.completed;
@@ -26,47 +26,50 @@ function renderTodos() {
     console.log('we in here');
     
     dom.todoList.innerHTML = '';
+
     for (let i = 0; i < todoItems.length; i++) {
         const todo = todoItems[i];
+        const index = i;
         console.log(`i=${i}`);
-        
-        //for every object generate HTML
-        dom.todoList.innerHTML += `
-            <li class="todo-item" data-id="${i}">
-                <span class="${todo.completed?'completed':''}">${todo.task}</span>
-                <button class="complete-btn">${todo.completed?'Undo':'Complete'}</button>
-                <button class="delete-btn">Delete</button>
-            </li>
-        `;
 
-        //We create buttons here and that's why we create addEventListeners here...
-        // TOFIX: Add event listenters to the buttons (to the ul container, e.target style):
-        const completeBtn = document.querySelector(`li[data-id='${i}']>.complete-btn`);
-        const deleteBtn = document.querySelector(`li[data-id='${i}']>.delete-btn`);
+        const listItem = document.createElement("li");
+        listItem.className = "todo-item";
+        
+        if(todo.completed){
+            listItem.innerHTML = `<span class="completed">${todo.task}</span>`;
+        }else{
+            listItem.innerHTML = `<span>${todo.task}</span>`;
+        }
+
+        //Set dataset index for identification
+        listItem.dataset.index = index;
+
+       const completeBtn = document.createElement("button");
+       completeBtn.className = "complete-btn";
+       completeBtn.textContent = todo.completed ? "Undo" : "Complete";
+
+       const deleteBtn = document.createElement("button");
+       deleteBtn.className = "delete-btn";
+       deleteBtn.textContent = "Delete";
+
+       //Apend the buttons to the li
+       listItem.append(completeBtn);
+       listItem.append(deleteBtn);
+
+        //Append the li to the ul
+        dom.todoList.appendChild(listItem);
 
         completeBtn.addEventListener('click', (e)=>{
-            console.log('sss');
-
-            console.log('1.We in here');
-            console.log(`0.i=${i}`);
-            
-            //data attribute - to know which li is pressed on
-            const index = completeBtn.parentElement.dataset.id;
-            console.log(`index: ${index}`);
 
             //change state
             toggleComplete(index);
+
             //change UI
             renderTodos();
             console.dir(todoItems);
         });
 
         deleteBtn.addEventListener('click', (e)=>{
-            console.log('000');
-            
-            const index = completeBtn.parentElement.dataset.id;
-            console.log(`index: ${index}`);
-
             //change state
             deleteTodo(index);
             //change UI
