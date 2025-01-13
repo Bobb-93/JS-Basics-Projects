@@ -14,7 +14,7 @@ function toggleComplete(index) {
     //console.log('0.we in here');
 
     const todo = todoItems[index];
-    todo.completed =  !todo.completed;
+    todo.completed = !todo.completed;
 
 }
 
@@ -24,7 +24,7 @@ function deleteTodo(index) {
 
 function renderTodos() {
     console.log('we in here');
-    
+
     dom.todoList.innerHTML = '';
 
     for (let i = 0; i < todoItems.length; i++) {
@@ -34,32 +34,32 @@ function renderTodos() {
 
         const listItem = document.createElement("li");
         listItem.className = "todo-item";
-        
-        if(todo.completed){
+
+        if (todo.completed) {
             listItem.innerHTML = `<span class="completed">${todo.task}</span>`;
-        }else{
+        } else {
             listItem.innerHTML = `<span>${todo.task}</span>`;
         }
 
         //Set dataset index for identification
         listItem.dataset.index = index;
 
-       const completeBtn = document.createElement("button");
-       completeBtn.className = "complete-btn";
-       completeBtn.textContent = todo.completed ? "Undo" : "Complete";
+        const completeBtn = document.createElement("button");
+        completeBtn.className = "complete-btn";
+        completeBtn.textContent = todo.completed ? "Undo" : "Complete";
 
-       const deleteBtn = document.createElement("button");
-       deleteBtn.className = "delete-btn";
-       deleteBtn.textContent = "Delete";
+        const deleteBtn = document.createElement("button");
+        deleteBtn.className = "delete-btn";
+        deleteBtn.textContent = "Delete";
 
-       //Apend the buttons to the li
-       listItem.append(completeBtn);
-       listItem.append(deleteBtn);
+        //Apend the buttons to the li
+        listItem.append(completeBtn);
+        listItem.append(deleteBtn);
 
         //Append the li to the ul
         dom.todoList.appendChild(listItem);
 
-        completeBtn.addEventListener('click', (e)=>{
+        completeBtn.addEventListener('click', (e) => {
 
             //change state
             toggleComplete(index);
@@ -69,7 +69,7 @@ function renderTodos() {
             console.dir(todoItems);
         });
 
-        deleteBtn.addEventListener('click', (e)=>{
+        deleteBtn.addEventListener('click', (e) => {
             //change state
             deleteTodo(index);
             //change UI
@@ -82,9 +82,9 @@ function renderTodos() {
 
 // Get DOM elements
 const dom = {
-    todoInput : document.getElementById('todo-input'),
-    addTodoButton : document.getElementById('add-todo'),
-    todoList : document.getElementById('todo-list')
+    todoInput: document.getElementById('todo-input'),
+    addTodoButton: document.getElementById('add-todo'),
+    todoList: document.getElementById('todo-list')
 };
 
 // initialize state
@@ -101,7 +101,7 @@ const todoItems = [
 
 renderTodos();
 
-dom.addTodoButton.addEventListener('click', (e)=>{
+dom.addTodoButton.addEventListener('click', (e) => {
     //change state
     addTodo();
     //change UI

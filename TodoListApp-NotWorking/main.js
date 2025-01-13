@@ -45,10 +45,10 @@ function renderTodos() {
         const deleteBtn = document.querySelector(`li[data-id='${i}']>.delete-btn`);
 
         completeBtn.addEventListener('click', (e)=>{
-            console.log('sss');
+            // console.log('sss');
 
-            console.log('1.We in here');
-            console.log(`0.i=${i}`);
+            // console.log('1.We in here');
+            // console.log(`0.i=${i}`);
             
             //data attribute - to know which li is pressed on
             const index = completeBtn.parentElement.dataset.id;
@@ -62,7 +62,7 @@ function renderTodos() {
         });
 
         deleteBtn.addEventListener('click', (e)=>{
-            console.log('000');
+            //console.log('000');
             
             const index = completeBtn.parentElement.dataset.id;
             console.log(`index: ${index}`);
