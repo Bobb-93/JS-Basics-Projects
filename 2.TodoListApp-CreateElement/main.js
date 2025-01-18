@@ -4,7 +4,7 @@ function addTodo() {
     const newTodo = {
         'task': todoTitle,
         'completed': false
-    }
+    };
 
     //change state
     todoItems.push(newTodo);
