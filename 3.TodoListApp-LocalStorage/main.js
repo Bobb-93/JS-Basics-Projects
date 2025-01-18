@@ -1,5 +1,10 @@
 function addTodo() {
-    const todoTitle = dom.todoInput.value;
+    const todoTitle = dom.todoInput.value.trim();
+
+    if (!todoTitle) {
+        alert('Please enter a correct task title!');
+        return;
+    }
 
     const newTodo = {
         'task': todoTitle,
@@ -10,6 +15,8 @@ function addTodo() {
     todoItems.push(newTodo);
 
     localStorage.setItem("todoItems", JSON.stringify(todoItems));
+    dom.todoInput.value = '';
+
 }
 
 function toggleComplete(index) {
