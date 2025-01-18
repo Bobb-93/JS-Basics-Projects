@@ -9,23 +9,29 @@ function addTodo() {
     //change state
     todoItems.push(newTodo);
 
-    localStorage.setItem(todoTitle, false);
+    localStorage.setItem("todoItems", JSON.stringify(todoItems));
 }
 
 function toggleComplete(index) {
-    //console.log('0.we in here');
+  
+	// toggle todo object 'completed' property value:
+	todoItems[index].completed = !todoItems[index].completed;
+    
 
-    const todo = todoItems[index];
-    todo.completed = !todo.completed;
+    localStorage.setItem('todoItems', JSON.stringify(todoItems));
 
 }
 
 function deleteTodo(index) {
-    todoItems.splice(index, 1);
+
+	index>=0 && todoItems.splice(index,1);
+
+	localStorage.setItem('todoItems', JSON.stringify(todoItems));
+
 }
 
 function renderTodos() {
-    console.log('we in here');
+    // console.log('we in here');
 
     dom.todoList.innerHTML = '';
 
@@ -89,18 +95,19 @@ const dom = {
     todoList: document.getElementById('todo-list')
 };
 
-// initialize state
-const todoItems = [
-    {
-        'task': 'Task 1',
-        'completed': false
-    },
-    {
-        'task': 'Task 2',
-        'completed': true
-    },
-]; // взимаме информация от тук, когато искаме да изобразяваме
+// // initialize state
+// const todoItems = [
+//     {
+//         'task': 'Task 1',
+//         'completed': false
+//     },
+//     {
+//         'task': 'Task 2',
+//         'completed': true
+//     },
+// ]; // взимаме информация от тук, когато искаме да изобразяваме
 
+let todoItems = JSON.parse(localStorage.getItem("todoItems")) || [];
 renderTodos();
 
 dom.addTodoButton.addEventListener('click', (e) => {
