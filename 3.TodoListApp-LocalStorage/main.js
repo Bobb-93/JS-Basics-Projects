@@ -13,19 +13,19 @@ function addTodo() {
 }
 
 function toggleComplete(index) {
-  
-	// toggle todo object 'completed' property value:
-	todoItems[index].completed = !todoItems[index].completed;
-    
+
+    // toggle todo object 'completed' property value:
+    todoItems[index].completed = !todoItems[index].completed;
+
     localStorage.setItem('todoItems', JSON.stringify(todoItems));
 
 }
 
 function deleteTodo(index) {
 
-	index>=0 && todoItems.splice(index,1);
+    index >= 0 && todoItems.splice(index, 1);
 
-	localStorage.setItem('todoItems', JSON.stringify(todoItems));
+    localStorage.setItem('todoItems', JSON.stringify(todoItems));
 
 }
 
@@ -109,10 +109,20 @@ const dom = {
 let todoItems = JSON.parse(localStorage.getItem("todoItems")) || [];
 renderTodos();
 
-dom.addTodoButton.addEventListener('click', (e) => {
+dom.addTodoButton.addEventListener("click", (e) => {
     //change state
     addTodo();
     //change UI
     renderTodos();
     console.dir(todoItems);
+});
+
+dom.todoInput.addEventListener("keypress", (e) => {
+    if (e.key === 'Enter') {
+        //change state
+        addTodo();
+        //change UI
+        renderTodos();
+        console.dir(todoItems);
+    }
 });
