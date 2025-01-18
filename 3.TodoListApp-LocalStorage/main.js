@@ -108,6 +108,7 @@ const dom = {
 
 let todoItems = JSON.parse(localStorage.getItem("todoItems")) || [];
 renderTodos();
+dom.todoInput.focus();
 
 dom.addTodoButton.addEventListener("click", (e) => {
     //change state
