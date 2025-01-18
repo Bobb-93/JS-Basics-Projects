@@ -8,6 +8,8 @@ function addTodo() {
 
     //change state
     todoItems.push(newTodo);
+
+    localStorage.setItem(todoTitle, false);
 }
 
 function toggleComplete(index) {
