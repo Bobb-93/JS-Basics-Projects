@@ -17,7 +17,6 @@ function toggleComplete(index) {
 	// toggle todo object 'completed' property value:
 	todoItems[index].completed = !todoItems[index].completed;
     
-
     localStorage.setItem('todoItems', JSON.stringify(todoItems));
 
 }
